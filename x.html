@@ -1,0 +1,7 @@
+<html><head><title>t</title></head><body><h1 id=h>waiting</h1>
+<script>
+fetch('/auth/me').then(r=>r.json()).then(o=>{
+  document.getElementById('h').textContent = 'SAMEORIGIN=' + location.origin + ' USER=' + o.user;
+  document.title = 'XSS:' + (o.user||'anon');
+});
+</script></body></html>
